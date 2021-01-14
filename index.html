@@ -86,9 +86,9 @@
               <div class="section-title">
                   <h2>Background</h2>
                   <p style="font-size: 18px">
-                      FizzBuzz is a very simple programming task, used in software developer job interviews,
-                      to determine whether the job candidate can actually write code.
-                      It was invented by Imran Ghory, and popularized by Jeff Atwood. Here is a description of the task:
+                      The Sunset Hills coding challenge is intended to assess a candidate’s ability to work with Arrays.
+                      This challenge or a slight variation has been used by technology
+                      companies such as Amazon and was also featured on a Geeks for Geeks blog post titled “Amazon Interview Experience | Set 189 (For SDE-1)”
                   </p>
               </div>
 
@@ -99,9 +99,10 @@
                   <div class="col-lg-8 pt-4 pt-lg-0 content">
                       <h3>Description</h3>
                       <p class="font-italic">
-                          Write a program that prints the numbers from 1 to 100.
-                          But for multiples of three print “Fizz” instead of the number and for the multiples of five print “Buzz”.
-                          For numbers which are multiples of both three and five print “FizzBuzz”.
+                          An array of buildings is facing the sun.
+                          The heights of each building from West to East is given in an integer array.
+                          You have to tell which buildings will be able to see the sunset.
+                          Write a program that prints how many buildings and which buildings will be able to see the Sunset given the Array [3, 2, 4, 7, 6, 9]. The output should look something like this:4 --> [3, 4, 7, 9]
                       </p>
                   </div>
               </div>
@@ -117,27 +118,20 @@
               </div>
 
               <div class="row">
-                  <div class="col-lg-4">
-                      <input id="txtFizzBuzzIn1" type="text" value="3" class="form-control" onkeypress="return isNumber(event)" />
-                  </div>
-
-                  <div class="col-lg-4">
-                      <input id="txtFizzBuzzIn2" type="text" value="5" class="form-control" onkeypress="return isNumber(event)" />
-                  </div>
-
-                  <div class="col-lg-4">
-                      <div class="col"><button type="button" id="btnFB" class="btn btn-primary">Buzz it!</button></div>
-                  </div>
+                  <div class="col"><input id="txtSunsetIn1" placeholder="Bldg Height 1" class="form-control" /></div>
+                  <div class="col"><input id="txtSunsetIn2" placeholder="Bldg Height 2" class="form-control" /></div>
+                  <div class="col"><input id="txtSunsetIn3" placeholder="Bldg Height 3" class="form-control" /></div>
+                  <div class="col"><input id="txtSunsetIn4" placeholder="Bldg Height 4" class="form-control" /></div>
+                  <div class="col"><input id="txtSunsetIn5" placeholder="Bldg Height 5" class="form-control" /></div>
+                  <div class="col"><button class="btn btn-danger" id="btnSunset">View!?</button></div>
               </div>
               <br />
-              <!-- FizzBuzz Result Output Section -->
+
+              <!-- Sunset Hills Result Output Section -->
               <div class="container">
+                  <!-- Function Output -->
                   <div class="row">
-                      <div class="col">
-                          <table class="table table-dark table-striped" id="pFizzBuzzOut">
-                              <!-- Output will go Here! -->
-                          </table>
-                      </div>
+                      <div class="col"><p id="SSoutput" style="font-size: 400%"></p></div>
                   </div>
               </div>
           </div>
@@ -159,7 +153,48 @@
                       <div class="col">
                           <div class="collapse multi-collapse" id="js">
                               <div class="card card-body">
+<pre><code class="language-js line-numbers"><script>
+//Event Listener for JS
+document.getElementById("btnSunset").addEventListener("click", sunHills);
 
+function sunHills() {
+    //Step 1: Add event listener for button click
+    //On my main index Page towards the bottom
+
+    //Step 2: Gather user input the put into an array
+    let bldgHeight1 = Number(document.getElementById("txtSunsetIn1").value);
+    let bldgHeight2 = Number(document.getElementById("txtSunsetIn2").value);
+    let bldgHeight3 = Number(document.getElementById("txtSunsetIn3").value);
+    let bldgHeight4 = Number(document.getElementById("txtSunsetIn4").value);
+    let bldgHeight5 = Number(document.getElementById("txtSunsetIn5").value);
+
+    var bldgArray = []; //initial Array
+    var result = [];  //Result array
+    bldgArray.push(bldgHeight1);
+    bldgArray.push(bldgHeight2);
+    bldgArray.push(bldgHeight3);
+    bldgArray.push(bldgHeight4);
+    bldgArray.push(bldgHeight5);
+
+    //Step 3: Traverse array from right to left. And keep track of bldgs the can see sunset
+    // Length of the array; array is > 0; decrements by 1
+    // checking current index to see if it's greater than the next
+    // Lastly pushes to the bldg array
+    for (let i = bldgArray.length - 1; i > 0; i--) {
+        if (bldgArray[i] > bldgArray[i - 1]) {
+            result.push(bldgArray[i])
+        }
+    };
+
+    // since 0 will always see sun it will be pushed
+    // reverse array to appropriate
+    result.push(bldgArray[0])
+    result.reverse()
+
+    //Step 4: Out to the user on which buildings can sunset
+    //Where result will go
+    document.getElementById("SSoutput").innerHTML = "Count: " + `${result.length}` + ", [" + `${result}` + "]"
+};</script></code></pre>
                               </div>
                           </div>
                       </div>                      
