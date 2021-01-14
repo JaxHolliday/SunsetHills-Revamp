@@ -107,6 +107,8 @@
     <Content Include="img\favicon-16x16.png" />
     <Content Include="img\favicon-32x32.png" />
     <Content Include="img\favicon.ico" />
+    <Content Include="img\retro-sunstet.gif" />
+    <Content Include="img\sunset.gif" />
     <Content Include="index.html" />
     <Content Include="js\aos.js" />
     <Content Include="js\bootstrap.bundle.min.js" />
